@@ -1,28 +1,38 @@
-== README
+== Introducción a Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Creamos un nuevo proyecto en Rails llamado demo, escribir en la terminal:
 
-Things you may want to cover:
+```console
+$ rails new demo
+```
 
-* Ruby version
+* Ingresamos al proyecto para poder ver su estructura, escribir en la terminal:
 
-* System dependencies
+```console
+$ cd demo
+```
 
-* Configuration
+* Para inicializar nuestro servidor y visualizar nuestro proyecto:
 
-* Database creation
+```console
+$ rails server
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ingresar a [localhost:3000](http://localhost:3000/)
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Para crear nuevas vistas en nuestro proyecto: Hola y Adios, escribir en la terminal:
+
+```console
+$ rails generate controller Saludo hola adios
+```
+
+* Se podrá observar que tenemos dos nuevas vistas:
+Para la vista hola: [localhost:3000/saludo/hola](http://localhost:3000/saludo/hola)
+Para la vista adios: [localhost:3000/saludo/adios](http://localhost:3000/saludo/adios)
+
+* Para editar una de las vistas debemos ingresar a app/views/saludo/hola.html.erb y editar el archivo como si fuera un html:
+
+```html
+<h1>Hola ITSAE!</h1>
+```
