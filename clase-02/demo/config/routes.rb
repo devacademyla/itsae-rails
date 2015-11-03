@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :productos
   get 'saludo/hola'
 
   get 'saludo/adios'

@@ -1,38 +1,36 @@
-# Introducción a Ruby on Rails
+# Inicio rápido con Scaffolding
 
-* Creamos un nuevo proyecto en Rails llamado demo, escribir en la terminal:
-
-```console
-$ rails new demo
-```
-
-* Ingresamos al proyecto para poder ver su estructura, escribir en la terminal:
+* Desde el proyecto hecho en la primera clase se creará un scaffolding para el recurso Producto, escribir en la terminal:
 
 ```console
-$ cd demo
+$ rails generate scaffold Producto titulo:string descripcion:text precio:decimal
 ```
 
-* Para inicializar nuestro servidor y visualizar nuestro proyecto:
+* Luego debemos correr las migraciones pendientes:
 
 ```console
-$ rails server
+$ rake db:migrate
 ```
 
-Ingresar a [localhost:3000](http://localhost:3000/)
+* Para ver toda la funcionalidad creada, ingresar a:
+
+Ingresar a [localhost:3000/productos](http://localhost:3000/productos)
 
 
-* Para crear nuevas vistas en nuestro proyecto: Hola y Adios, escribir en la terminal:
+* Si nos equivocamos al generar el scaffold, podemos revertirlo:
 
 ```console
-$ rails generate controller Saludo hola adios
+$ rails destroy scaffold Producto
 ```
 
-* Se podrá observar que tenemos dos nuevas vistas:
-Para la vista hola: [localhost:3000/saludo/hola](http://localhost:3000/saludo/hola)
-Para la vista adios: [localhost:3000/saludo/adios](http://localhost:3000/saludo/adios)
+* También debemos regresar la migración que hemos realizado y eliminar la migración creada:
 
-* Para editar una de las vistas debemos ingresar a app/views/saludo/hola.html.erb y editar el archivo como si fuera un html:
+```console
+$ rake db:rollback
+```
 
-```html
-<h1>Hola ITSAE!</h1>
+* Si adicionalmente necesitas resetear la base de datos, puedes usar el comando:
+
+```console
+$ rake db:reset
 ```
