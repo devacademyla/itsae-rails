@@ -1,4 +1,4 @@
-== Introducción a Ruby on Rails
+# Introducción a Ruby on Rails
 
 * Creamos un nuevo proyecto en Rails llamado demo, escribir en la terminal:
 
