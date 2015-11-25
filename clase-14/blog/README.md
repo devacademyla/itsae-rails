@@ -72,3 +72,71 @@ $ rails server
 <% end %>
 ```
 * Ingresa a [localhost:3000](http://localhost:3000)
+
+## CanCan
+
+* Agregar el campo rol a la table user:
+```console
+$ rails generate migration add_rol_to_users rol:string
+$ rake db:migrate
+```
+
+* Agregar la gema cancan a la aplicación, agregar en el Gemfile:
+```ruby
+gem 'cancan'
+```
+
+```console
+$ bundle install
+```
+
+* Generar el Ability, ejecutar
+```console
+$ rails generate cancan:ability
+```
+
+* En el Ability configurar los accesos de acuerdo al rol. Editar en models/ability.rb
+```ruby
+user ||= User.new
+if user.rol == 'admin'
+  can :manage, :all
+else
+  can :read, :all
+end
+```
+
+* Enviar una variable global con todos los usuarios en la página principal, editar el home_controller:
+```ruby
+class HomeController < ApplicationController
+  def index
+    @usuarios = User.all
+  end
+end
+```
+
+* Agregar la lista de usuarios en home/index.html.erb:
+```html
+<h1>Página principal</h1>
+<h2>Usuarios</h2>
+<ul>
+  <% @usuarios.each do |usuario| %>
+    <li><%= usuario.email %></li>
+  <% end %>
+</ul>
+```
+
+* Controlar que se muestre o no para crear nuevas usuarios. En home/index.html.erb, editar:
+```html
+<h1>Página principal</h1>
+<h2>Usuarios</h2>
+<ul>
+  <% @usuarios.each do |usuario| %>
+    <li>
+      <%= usuario.email %>
+    </li>
+  <% end %>
+  <% if can? :create, @usuarios %>
+    <%= link_to "Crear", '/other' %>
+  <% end %>
+</ul>
+```

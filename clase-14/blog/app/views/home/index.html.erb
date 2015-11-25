@@ -1,1 +1,12 @@
 <h1>Página principal</h1>
+<h2>Usuarios</h2>
+<ul>
+  <% @usuarios.each do |usuario| %>
+    <li>
+      <%= usuario.email %>
+    </li>
+  <% end %>
+  <% if can? :create, @usuarios %>
+    <%= link_to "Crear", '/other' %>
+  <% end %>
+</ul>
