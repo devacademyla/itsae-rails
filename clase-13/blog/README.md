@@ -1,4 +1,4 @@
-# Asset pipeline
+# REST
 
 * Crear un nuevo proyecto que se llame Blog:
 
@@ -19,7 +19,7 @@ $ rake db:migrate
 
 * Editar routes.rb
 ```ruby
-resources :posts, only: [:index, :create]
+resources :posts, only: [:index, :show]
 ```
 
 * Agregar posts_controller.rb dentro de app/controllers:
@@ -42,12 +42,10 @@ Ingresar a [localhost:3000/posts](http://localhost:3000/posts)
 
 * Agregar la acción show en el controller Posts:
 ```ruby
-class PostsController < ApplicationController
-  def show
-    render json: Post.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: 'No existe', status: :not_found
-  end
+def show
+  render json: Post.find(params[:id])
+rescue ActiveRecord::RecordNotFound
+  render json: 'No existe', status: :not_found
 end
 ```
 * En el código anterior se está cambiando el HTTP status code que se envía al no encontrar un post.
